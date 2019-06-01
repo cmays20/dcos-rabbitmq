@@ -1,0 +1,8 @@
+{
+  "packagingVersion": "4.0",
+  "name": "rabbitmq",
+  "version": "0.1.0",
+  "maintainer": "https://github.com/cmays/dcos-rabbitmq",
+  "description": "This is a rabbitmq installation for DC/OS",
+  "tags": ["rabbit", "queue", "rabbitmq", "messaging"]
+}

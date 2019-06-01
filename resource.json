@@ -1,0 +1,14 @@
+{
+  "assets": {
+    "container": {
+      "docker": {
+        "rabbitmqimage": "rabbitmq:3-management-alpine"
+      }
+    }
+  },
+  "images": {
+    "icon-small": "",
+    "icon-medium": "",
+    "icon-large": ""
+  }
+}

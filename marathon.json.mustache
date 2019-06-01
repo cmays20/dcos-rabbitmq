@@ -1,0 +1,35 @@
+{
+  "id": "{{service.name}}",
+  "cpus": {{service.cpus}},
+  "mem": {{service.mem}},
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "{{resource.assets.container.docker.timeserverimage}}",
+      "network": "BRIDGE"
+    }
+  },
+  "portDefinitions": [
+    {
+      "hostPort": 0,
+      "containerPort": 5672,
+      "protocol": "tcp",
+      "name": "amqp"
+    },
+    {
+      "hostPort": 0,
+      "containerPort": 15672,
+      "protocol": "tcp",
+      "name": "management"
+    }
+  ],
+  "labels": {
+    {{#networking.virtual-host}}
+    "HAPROXY_GROUP":"external",
+    "HAPROXY_1_VHOST":"{{networking.virtual-host}}",
+    "HAPROXY_1_REDIRECT_TO_HTTPS": "{{networking.https-redirect}}",
+    {{/networking.virtual-host}}
+    "MARATHON_SINGLE_INSTANCE_APP": "true"
+  }
+}
