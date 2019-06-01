@@ -6,24 +6,27 @@
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "{{resource.assets.container.docker.timeserverimage}}",
+      "image": "{{resource.assets.container.docker.rabbitmqimage}}",
       "network": "BRIDGE"
-    }
-  },
-  "portDefinitions": [
-    {
-      "hostPort": 0,
-      "containerPort": 5672,
-      "protocol": "tcp",
-      "name": "amqp"
     },
-    {
-      "hostPort": 0,
-      "containerPort": 15672,
-      "protocol": "tcp",
-      "name": "management"
-    }
-  ],
+    "portMappings": [
+      {
+        "containerPort": 5672,
+        "hostPort": 0,
+        "labels": {
+          "VIP_0": "/{{service.name}}:5672"
+        },
+        "name": "amqp",
+        "protocol": "tcp"
+      },
+      {
+        "containerPort": 15672,
+        "hostPort": 0,
+        "name": "management",
+        "protocol": "tcp"
+      }
+    ]
+  },
   "labels": {
     {{#networking.virtual-host}}
     "HAPROXY_GROUP":"external",
@@ -31,5 +34,9 @@
     "HAPROXY_1_REDIRECT_TO_HTTPS": "{{networking.https-redirect}}",
     {{/networking.virtual-host}}
     "MARATHON_SINGLE_INSTANCE_APP": "true"
+  },
+  "upgradeStrategy":{
+    "minimumHealthCapacity": 0,
+    "maximumOverCapacity": 0
   }
 }
