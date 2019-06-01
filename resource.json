@@ -7,8 +7,8 @@
     }
   },
   "images": {
-    "icon-small": "",
-    "icon-medium": "",
-    "icon-large": ""
+    "icon-small": "https://raw.githubusercontent.com/cmays20/dcos-rabbitmq/master/rabbitmq.png",
+    "icon-medium": "https://raw.githubusercontent.com/cmays20/dcos-rabbitmq/master/rabbitmq.png",
+    "icon-large": "https://raw.githubusercontent.com/cmays20/dcos-rabbitmq/master/rabbitmq.png"
   }
 }
